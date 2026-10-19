@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "entries": {
+    "repo_navigator/cli.py::main": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::read_json": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::write_text_if_changed": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::write_json": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::semantic_status": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::make_semantics": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::escape_cell": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::generate_markdown": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::scan": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/indexer.py::inspect": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::digest": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::discover_files": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_git_available": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_python_symbols": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_python_symbols.<locals>.visit": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_cpp_symbols": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_cpp_symbols.<locals>.node_text": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_cpp_symbols.<locals>.find_declarator": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::_cpp_symbols.<locals>.walk": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "repo_navigator/scanner.py::collect_structure": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_cpp.py::test_cpp_overloads_namespaces_and_class_methods": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_workflow.py::test_init_scan_review_and_stale_detection": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_workflow.py::test_existing_agent_instructions_preserved": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_workflow.py::test_nested_functions_and_python_hash_ignore_line_shifts": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_workflow.py::test_ignored_directories_not_indexed": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_workflow.py::test_invalid_python_does_not_overwrite_existing_index": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    },
+    "tests/test_workflow.py::test_removed_symbol_purges_entry_on_scan": {
+      "purpose": "",
+      "owner": "",
+      "side_effects": [],
+      "reviewed_hash": null
+    }
+  }
+}

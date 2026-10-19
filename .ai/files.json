@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "repo_navigator/__init__.py",
+      "language": "python",
+      "source_hash": "2a44ed92f19acf487423341f59c1f1aa17a1bbf6f3c972b2b62bc18d624d47bb",
+      "symbol_count": 0
+    },
+    {
+      "path": "repo_navigator/__main__.py",
+      "language": "python",
+      "source_hash": "d220d88dd9a25cd0629c5176dd6532a2db1da40eb014a8e80796b0ddeb134918",
+      "symbol_count": 0
+    },
+    {
+      "path": "repo_navigator/cli.py",
+      "language": "python",
+      "source_hash": "2de0041f31b6a92a365982b4e7a04916fb7f2a108c80c4e83a60e02ce10cc9dc",
+      "symbol_count": 1
+    },
+    {
+      "path": "repo_navigator/indexer.py",
+      "language": "python",
+      "source_hash": "30dc325c86f04d88982f8cfff1eb235e8c7664443ffb58223a0fb35692e85a8a",
+      "symbol_count": 9
+    },
+    {
+      "path": "repo_navigator/scanner.py",
+      "language": "python",
+      "source_hash": "3603f54a17bb550c71e5975ffd59a3d14b87661831a2ced96664be3d091aabd3",
+      "symbol_count": 10
+    },
+    {
+      "path": "repo_navigator/templates.py",
+      "language": "python",
+      "source_hash": "3dd487d23afefe0b1c7d18a0d1a6d89ae8489d681db3c3f9bf75f9299b97ec0e",
+      "symbol_count": 0
+    },
+    {
+      "path": "tests/test_cpp.py",
+      "language": "python",
+      "source_hash": "93f8cc6371f79ee6bfc9c54364090b30887aae07c9bf14fdeeabc79d843bcf1b",
+      "symbol_count": 1
+    },
+    {
+      "path": "tests/test_workflow.py",
+      "language": "python",
+      "source_hash": "3f3f9b6bc457c870b6a15fe13635d07d173ced9aa6d3e0ac0e118f7c32ef5136",
+      "symbol_count": 6
+    }
+  ]
+}
