@@ -2,166 +2,214 @@
   "schema_version": 1,
   "entries": {
     "repo_navigator/cli.py::main": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Parse a repo-nav command, initialize optional templates, dispatch scanning or inspection, and return a command-line exit code.",
+      "owner": "repo_navigator.cli",
+      "side_effects": [
+        "May create AGENTS.md and .ai/architecture.md during init",
+        "May regenerate .ai index files through scan",
+        "Reads repository source and index files through scan or inspect",
+        "Prints command results to stdout and handled errors to stderr"
+      ],
+      "reviewed_hash": "0917ecae5e63814f981862a8a3682e8bf2ddf67f040342d69ec0619d90f61636"
     },
     "repo_navigator/indexer.py::read_json": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Read a version-1 JSON object, returning a supplied default for a missing file or rejecting a missing/invalid index.",
+      "owner": "repo_navigator.indexer",
+      "side_effects": [
+        "Reads a UTF-8 JSON file from disk"
+      ],
+      "reviewed_hash": "d6ab3b7e5181f8caf70c182e580eb87b9a5e5c195ec101817fe502c0d0249deb"
     },
     "repo_navigator/indexer.py::write_text_if_changed": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Atomically replace a UTF-8 text file only when its requested content differs from the current content.",
+      "owner": "repo_navigator.indexer",
+      "side_effects": [
+        "Creates parent directories as needed",
+        "Reads an existing destination file when present",
+        "Writes and atomically replaces the destination through a sibling temporary file"
+      ],
+      "reviewed_hash": "f186660df8ca121d6422a1ded58bcf07cf565eda3faaf8ed5b00d4fe242f30fb"
     },
     "repo_navigator/indexer.py::write_json": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Serialize a JSON object with stable indentation and a trailing newline, then write it only if changed.",
+      "owner": "repo_navigator.indexer",
+      "side_effects": [
+        "May create or atomically replace a JSON file and its parent directories"
+      ],
+      "reviewed_hash": "480498a640fcd8c512b8f30d9b3da215f7e7f4c7b8c8907aec81cb942b844ac3"
     },
     "repo_navigator/indexer.py::semantic_status": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Classify a symbol's semantic entry as missing, stale, or verified from required fields and the current source hash.",
+      "owner": "repo_navigator.indexer",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "765e6e732100cfd1b1a9161e600143a981a3e2b1f31a45c5bc2039447e7c7dc9"
     },
     "repo_navigator/indexer.py::make_semantics": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Build the current semantic-entry map, preserving entries for existing symbol IDs, adding blank entries, and dropping removed symbols.",
+      "owner": "repo_navigator.indexer",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "06595f55e146a6dc3648a24f7277a6629b7bb6689567ce4188cd130beb8deec4"
     },
     "repo_navigator/indexer.py::escape_cell": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Convert a value to single-line Markdown table text and escape pipe characters.",
+      "owner": "repo_navigator.indexer",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "0a1030f06fbc455d7cf65870f08f4e0d33c76a6b246109775b11ab1ecf9d426b"
     },
     "repo_navigator/indexer.py::generate_markdown": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Render the file and symbol indexes with semantic purposes and review states as deterministic Markdown.",
+      "owner": "repo_navigator.indexer",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "1610c121924918979cb7aaee44a99d83821d2bd950c0324e5f2416b210a8cc25"
     },
     "repo_navigator/indexer.py::scan": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Collect current repository structure, reconcile semantic entries, generate Markdown, and persist the complete .ai index.",
+      "owner": "repo_navigator.indexer",
+      "side_effects": [
+        "Reads repository source files and existing semantics",
+        "May invoke Git during file discovery",
+        "Creates or updates .ai/files.json, .ai/symbols.json, .ai/semantics.json, and .ai/INDEX.md"
+      ],
+      "reviewed_hash": "3b181bae49789f5c5264f8cc81b237b86fd3e3d6d5a1c11cb9fe4a6d4e2f92de"
     },
     "repo_navigator/indexer.py::inspect": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Compare current source structure, stored indexes, generated Markdown, and semantic review hashes without modifying them.",
+      "owner": "repo_navigator.indexer",
+      "side_effects": [
+        "Reads repository source and .ai index files",
+        "May invoke Git during file discovery"
+      ],
+      "reviewed_hash": "eff4c14687a4cfe6a23ad894fc78833959143eab82da9f2804728a594cad83ff"
     },
     "repo_navigator/scanner.py::digest": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Return the SHA-256 hexadecimal digest of bytes or UTF-8 text.",
+      "owner": "repo_navigator.scanner",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "760029265e2aa7b3c37bdea25f73be93966dc72b7cf0020d6e379f5d0938ca46"
     },
     "repo_navigator/scanner.py::discover_files": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Return sorted, supported, regular source files, using Git ignore rules at a repository root or a filtered directory walk otherwise.",
+      "owner": "repo_navigator.scanner",
+      "side_effects": [
+        "Runs Git discovery commands when Git is available",
+        "Traverses repository directories and inspects file metadata"
+      ],
+      "reviewed_hash": "774a6d0ffb5decfd348f8b08e754a0ee5e70f7a1687e37045fda387b5dc32f81"
     },
     "repo_navigator/scanner.py::_git_available": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Report whether a Git executable can be resolved from PATH.",
+      "owner": "repo_navigator.scanner",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "89ac08f34db533e65634c8028e9993d497743634a854c57fac738460875c9eff"
     },
     "repo_navigator/scanner.py::_python_symbols": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Parse Python source and return structural records for functions and methods, including nested definitions and AST-based hashes.",
+      "owner": "repo_navigator.scanner",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "f0919911e567c12afa461e8e81283dd07ad4a8f83274182c279154e41aef7d13"
     },
     "repo_navigator/scanner.py::_python_symbols.<locals>.visit": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Walk Python definition and top-level control-block nodes, appending function and method metadata to the enclosing extraction result.",
+      "owner": "repo_navigator.scanner._python_symbols",
+      "side_effects": [
+        "Appends discovered records to the enclosing symbols list"
+      ],
+      "reviewed_hash": "41de42cd6c011e5a4e9dcf070b7cbecf038cf97c206d14fb17dc3f8fc35e2889"
     },
     "repo_navigator/scanner.py::_cpp_symbols": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Parse C++ source with Tree-sitter and return structural records for function definitions with signature-qualified IDs.",
+      "owner": "repo_navigator.scanner",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "510f70c707f3b10694fd442fb97948403372bbc2295b21520afe39b3013604fa"
     },
     "repo_navigator/scanner.py::_cpp_symbols.<locals>.node_text": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Decode a Tree-sitter node's byte range from the enclosing C++ source.",
+      "owner": "repo_navigator.scanner._cpp_symbols",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "ab04bfd07a10f95b47d1d598ed63e45858807d46de4be4bb3dcdcdb370ed42a7"
     },
     "repo_navigator/scanner.py::_cpp_symbols.<locals>.find_declarator": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Recursively find the first function_declarator node within a C++ declarator subtree.",
+      "owner": "repo_navigator.scanner._cpp_symbols",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "89d824393c490fbccb93a98b4b18638f71b5670d86f0aa533fc9d2700f4c2259"
     },
     "repo_navigator/scanner.py::_cpp_symbols.<locals>.walk": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Traverse C++ syntax scopes and append metadata for function definitions while excluding function-body descendants.",
+      "owner": "repo_navigator.scanner._cpp_symbols",
+      "side_effects": [
+        "Appends discovered records to the enclosing symbols list"
+      ],
+      "reviewed_hash": "bd9855993053f31a3bbda4a2c8af4eb9c1c656d75b3853257e2736f4807e5bef"
     },
     "repo_navigator/scanner.py::collect_structure": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Read every discovered source file, extract language-specific symbols, validate unique IDs, and return deterministic file and symbol indexes.",
+      "owner": "repo_navigator.scanner",
+      "side_effects": [
+        "Reads discovered source files",
+        "May invoke Git during file discovery"
+      ],
+      "reviewed_hash": "6fbc488ffa7e9e7c5f8e6857bb057bdddd1fffa495048041ee4ac50a0eadb07d"
     },
     "tests/test_cpp.py::test_cpp_overloads_namespaces_and_class_methods": {
-      "purpose": "",
-      "owner": "",
+      "purpose": "Verify C++ extraction distinguishes overload IDs and preserves namespace and class qualification.",
+      "owner": "tests.test_cpp",
       "side_effects": [],
-      "reviewed_hash": null
+      "reviewed_hash": "7466a69698c67397abf95db652daf2adb217228bb4ed6c332e6632c486f4d16b"
     },
     "tests/test_workflow.py::test_init_scan_review_and_stale_detection": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Verify the init-to-review workflow, successful checking, stale detection, and preservation of prior semantics.",
+      "owner": "tests.test_workflow",
+      "side_effects": [
+        "Creates and modifies source and index files in pytest's temporary directory",
+        "Invokes CLI commands that write captured output"
+      ],
+      "reviewed_hash": "0ae8f1c343e0e2ed48462c36274af5a02222278d9ae45436817c0549216a96aa"
     },
     "tests/test_workflow.py::test_existing_agent_instructions_preserved": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Verify init preserves an existing AGENTS.md and indexes a Python class method correctly.",
+      "owner": "tests.test_workflow",
+      "side_effects": [
+        "Creates source, instruction, and index files in pytest's temporary directory",
+        "Invokes a CLI command that writes captured output"
+      ],
+      "reviewed_hash": "fc9c896c45961fd768b061b9e900e2bc5651945747032ecf51cc97966dcce130"
     },
     "tests/test_workflow.py::test_nested_functions_and_python_hash_ignore_line_shifts": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Verify nested Python functions are indexed and unchanged AST hashes survive leading line shifts.",
+      "owner": "tests.test_workflow",
+      "side_effects": [
+        "Creates and modifies source and index files in pytest's temporary directory",
+        "Invokes CLI commands that write captured output"
+      ],
+      "reviewed_hash": "e4cd5ed1b67436df2aa7538c9819d1b3cf89338dc72fc7b923385a48ae5b9b02"
     },
     "tests/test_workflow.py::test_ignored_directories_not_indexed": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Verify fallback scanning excludes source files under ignored build directories.",
+      "owner": "tests.test_workflow",
+      "side_effects": [
+        "Creates source, build, and index files in pytest's temporary directory",
+        "Invokes a CLI command that writes captured output"
+      ],
+      "reviewed_hash": "d709258aadf46ac12b267224931b6b87c8bf826e271df886f04417d8568b841f"
     },
     "tests/test_workflow.py::test_invalid_python_does_not_overwrite_existing_index": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Verify a Python parse failure returns an error without replacing the last valid symbol index.",
+      "owner": "tests.test_workflow",
+      "side_effects": [
+        "Creates and modifies source and index files in pytest's temporary directory",
+        "Invokes CLI commands that write captured output"
+      ],
+      "reviewed_hash": "b4d89945930dca1e8666f130b602be8004aed4454451235340c8fb07834dde96"
     },
     "tests/test_workflow.py::test_removed_symbol_purges_entry_on_scan": {
-      "purpose": "",
-      "owner": "",
-      "side_effects": [],
-      "reviewed_hash": null
+      "purpose": "Verify rescanning removes semantics for a deleted symbol and leaves the empty repository checkable.",
+      "owner": "tests.test_workflow",
+      "side_effects": [
+        "Creates and modifies source and index files in pytest's temporary directory",
+        "Invokes CLI commands that write captured output"
+      ],
+      "reviewed_hash": "d7b0866d255d2fae6e6ffff6f6e545ad636fbebca92a6625c71ef62e3f671ff0"
     }
   }
 }

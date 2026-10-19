@@ -9,12 +9,12 @@
 | --- | --- | ---: | ---: |
 | `repo_navigator/__init__.py` | python | 0 | 0 |
 | `repo_navigator/__main__.py` | python | 0 | 0 |
-| `repo_navigator/cli.py` | python | 1 | 1 |
-| `repo_navigator/indexer.py` | python | 9 | 9 |
-| `repo_navigator/scanner.py` | python | 10 | 10 |
+| `repo_navigator/cli.py` | python | 1 | 0 |
+| `repo_navigator/indexer.py` | python | 9 | 0 |
+| `repo_navigator/scanner.py` | python | 10 | 0 |
 | `repo_navigator/templates.py` | python | 0 | 0 |
-| `tests/test_cpp.py` | python | 1 | 1 |
-| `tests/test_workflow.py` | python | 6 | 6 |
+| `tests/test_cpp.py` | python | 1 | 0 |
+| `tests/test_workflow.py` | python | 6 | 0 |
 
 ## Symbols by file
 
@@ -22,50 +22,50 @@
 
 | Symbol | Lines | Purpose | Review |
 | --- | ---: | --- | --- |
-| `main` | 14-62 |  | missing |
+| `main` | 14-62 | Parse a repo-nav command, initialize optional templates, dispatch scanning or inspection, and return a command-line exit code. | verified |
 
 ### `repo_navigator/indexer.py`
 
 | Symbol | Lines | Purpose | Review |
 | --- | ---: | --- | --- |
-| `read_json` | 16-24 |  | missing |
-| `write_text_if_changed` | 27-33 |  | missing |
-| `write_json` | 36-37 |  | missing |
-| `semantic_status` | 40-47 |  | missing |
-| `make_semantics` | 50-59 |  | missing |
-| `escape_cell` | 62-63 |  | missing |
-| `generate_markdown` | 66-102 |  | missing |
-| `scan` | 105-115 |  | missing |
-| `inspect` | 118-147 |  | missing |
+| `read_json` | 16-24 | Read a version-1 JSON object, returning a supplied default for a missing file or rejecting a missing/invalid index. | verified |
+| `write_text_if_changed` | 27-33 | Atomically replace a UTF-8 text file only when its requested content differs from the current content. | verified |
+| `write_json` | 36-37 | Serialize a JSON object with stable indentation and a trailing newline, then write it only if changed. | verified |
+| `semantic_status` | 40-47 | Classify a symbol's semantic entry as missing, stale, or verified from required fields and the current source hash. | verified |
+| `make_semantics` | 50-59 | Build the current semantic-entry map, preserving entries for existing symbol IDs, adding blank entries, and dropping removed symbols. | verified |
+| `escape_cell` | 62-63 | Convert a value to single-line Markdown table text and escape pipe characters. | verified |
+| `generate_markdown` | 66-102 | Render the file and symbol indexes with semantic purposes and review states as deterministic Markdown. | verified |
+| `scan` | 105-115 | Collect current repository structure, reconcile semantic entries, generate Markdown, and persist the complete .ai index. | verified |
+| `inspect` | 118-147 | Compare current source structure, stored indexes, generated Markdown, and semantic review hashes without modifying them. | verified |
 
 ### `repo_navigator/scanner.py`
 
 | Symbol | Lines | Purpose | Review |
 | --- | ---: | --- | --- |
-| `digest` | 25-28 |  | missing |
-| `discover_files` | 31-57 |  | missing |
-| `_git_available` | 60-62 |  | missing |
-| `_python_symbols` | 65-100 |  | missing |
-| `_python_symbols.<locals>.visit` | 72-97 |  | missing |
-| `_cpp_symbols` | 103-174 |  | missing |
-| `_cpp_symbols.<locals>.node_text` | 119-120 |  | missing |
-| `_cpp_symbols.<locals>.find_declarator` | 122-131 |  | missing |
-| `_cpp_symbols.<locals>.walk` | 133-171 |  | missing |
-| `collect_structure` | 177-204 |  | missing |
+| `digest` | 25-28 | Return the SHA-256 hexadecimal digest of bytes or UTF-8 text. | verified |
+| `discover_files` | 31-57 | Return sorted, supported, regular source files, using Git ignore rules at a repository root or a filtered directory walk otherwise. | verified |
+| `_git_available` | 60-62 | Report whether a Git executable can be resolved from PATH. | verified |
+| `_python_symbols` | 65-100 | Parse Python source and return structural records for functions and methods, including nested definitions and AST-based hashes. | verified |
+| `_python_symbols.<locals>.visit` | 72-97 | Walk Python definition and top-level control-block nodes, appending function and method metadata to the enclosing extraction result. | verified |
+| `_cpp_symbols` | 103-174 | Parse C++ source with Tree-sitter and return structural records for function definitions with signature-qualified IDs. | verified |
+| `_cpp_symbols.<locals>.node_text` | 119-120 | Decode a Tree-sitter node's byte range from the enclosing C++ source. | verified |
+| `_cpp_symbols.<locals>.find_declarator` | 122-131 | Recursively find the first function_declarator node within a C++ declarator subtree. | verified |
+| `_cpp_symbols.<locals>.walk` | 133-171 | Traverse C++ syntax scopes and append metadata for function definitions while excluding function-body descendants. | verified |
+| `collect_structure` | 177-204 | Read every discovered source file, extract language-specific symbols, validate unique IDs, and return deterministic file and symbol indexes. | verified |
 
 ### `tests/test_cpp.py`
 
 | Symbol | Lines | Purpose | Review |
 | --- | ---: | --- | --- |
-| `test_cpp_overloads_namespaces_and_class_methods` | 6-23 |  | missing |
+| `test_cpp_overloads_namespaces_and_class_methods` | 6-23 | Verify C++ extraction distinguishes overload IDs and preserves namespace and class qualification. | verified |
 
 ### `tests/test_workflow.py`
 
 | Symbol | Lines | Purpose | Review |
 | --- | ---: | --- | --- |
-| `test_init_scan_review_and_stale_detection` | 8-37 |  | missing |
-| `test_existing_agent_instructions_preserved` | 40-47 |  | missing |
-| `test_nested_functions_and_python_hash_ignore_line_shifts` | 50-62 |  | missing |
-| `test_ignored_directories_not_indexed` | 65-70 |  | missing |
-| `test_invalid_python_does_not_overwrite_existing_index` | 73-80 |  | missing |
-| `test_removed_symbol_purges_entry_on_scan` | 83-90 |  | missing |
+| `test_init_scan_review_and_stale_detection` | 8-37 | Verify the init-to-review workflow, successful checking, stale detection, and preservation of prior semantics. | verified |
+| `test_existing_agent_instructions_preserved` | 40-47 | Verify init preserves an existing AGENTS.md and indexes a Python class method correctly. | verified |
+| `test_nested_functions_and_python_hash_ignore_line_shifts` | 50-62 | Verify nested Python functions are indexed and unchanged AST hashes survive leading line shifts. | verified |
+| `test_ignored_directories_not_indexed` | 65-70 | Verify fallback scanning excludes source files under ignored build directories. | verified |
+| `test_invalid_python_does_not_overwrite_existing_index` | 73-80 | Verify a Python parse failure returns an error without replacing the last valid symbol index. | verified |
+| `test_removed_symbol_purges_entry_on_scan` | 83-90 | Verify rescanning removes semantics for a deleted symbol and leaves the empty repository checkable. | verified |
